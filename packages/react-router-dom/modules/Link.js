@@ -12,7 +12,7 @@ class Link extends React.Component {
       push: PropTypes.func.isRequired,
       replace: PropTypes.func.isRequired,
       createHref: PropTypes.func.isRequired
-    }).isRequired
+    })
   }
 
   static propTypes = {
@@ -54,9 +54,8 @@ class Link extends React.Component {
 
   render() {
     const { replace, to, ...props } = this.props // eslint-disable-line no-unused-vars
-
-    const href = this.context.history.createHref(
-      typeof to === 'string' ? { pathname: to } : to
+    var href = this.context.history ? this.context.history.createHref(typeof to === 'string' ? { pathname: to } : to) : undefined;
+    
     )
 
     return <a {...props} onClick={this.handleClick} href={href}/>
